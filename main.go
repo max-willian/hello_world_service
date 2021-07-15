@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
-	"log"
 	"strconv"
 )
 
@@ -22,5 +21,5 @@ func main() {
 		fmt.Println("ta rodando")
 	})
 
-    log.Fatal(http.ListenAndServe(":8081", nil))
+    http.ListenAndServe(":8081", nil)
 }
