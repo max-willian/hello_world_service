@@ -1,22 +1,25 @@
 package main
 
 import (
-    "fmt"
-    "html"
-    "log"
-    "net/http"
+	"fmt"
+	"math/rand"
+	"net/http"
+	"strconv"
 )
 
 func main() {
 
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-    })
-
-    http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w, "Hi")
-    })
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		points := rand.Intn(40)
+		var m string
+		if points > 1 {
+			m = "points"
+		} else {
+			m = "point"
+		}
+		fmt.Fprintf(w, "Hey! You win "+strconv.Itoa(points)+" "+m)
+		fmt.Println("ta rodando")
+	})
 
     log.Fatal(http.ListenAndServe(":8081", nil))
-
 }
